@@ -13,15 +13,27 @@ const btnRollDice = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
 const btnNewGame = document.querySelector(".btn--new");
 
-// setting initial conditions
-score0Elm.innerHTML = 0;
-score1Elm.innerHTML = 0;
-diceElm.classList.add("hidden");
+// variables
+let scores, currentScore, activePlayer, playing;
 
-let scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+// function to initiate initial state of the game
+const initialState = () => {
+  // setting initial conditions
+  score0Elm.innerHTML = 0;
+  score1Elm.innerHTML = 0;
+  current0Elm.textContent = 0;
+  current1Elm.textContent = 0;
+  diceElm.classList.add("hidden");
+
+  // setting initial values for the variables
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+};
+
+// invoking the function to initiate initial state of the game
+initialState();
 
 // switch to next player
 const switchPlayer = () => {
@@ -40,8 +52,6 @@ btnRollDice.addEventListener("click", function () {
   if (playing) {
     // generating random dice number
     const randomDiceNumber = Math.trunc(Math.random() * 6 + 1);
-    console.log("i clicked roll dice");
-    console.log(typeof randomDiceNumber, randomDiceNumber);
 
     // display dice
     diceElm.classList.remove("hidden");
@@ -64,19 +74,12 @@ btnRollDice.addEventListener("click", function () {
 btnHold.addEventListener("click", () => {
   if (playing) {
     // add current score to active player's score
-    console.log(typeof currentScore);
-    console.log(`currentScore: ${currentScore}`);
-
-    console.log(typeof activePlayer);
-    console.log(`active player: ${activePlayer}`);
     scores[activePlayer] += currentScore;
-    console.log(`score is : ${scores[activePlayer]}`);
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
 
     // check if player's score is >=100
-    console.log(`score is : ${scores[activePlayer]}`);
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       // finish the game
       playing = false;
 
@@ -107,14 +110,8 @@ btnNewGame.addEventListener("click", () => {
     .querySelector(`.player--${activePlayer}`)
     .classList.remove("player--active");
 
-  score0Elm.innerHTML = 0;
-  score1Elm.innerHTML = 0;
-  current0Elm.textContent = 0;
-  current1Elm.textContent = 0;
-  diceElm.classList.add("hidden");
-  scores = [0, 0];
-  currentScore = 0;
-  activePlayer = 0;
-  playing = true;
   player0Elm.classList.add("player--active");
+
+  // invoking the function to initiate initial state of the game
+  initialState();
 });
