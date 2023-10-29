@@ -39,7 +39,7 @@ To run the game locally, download or clone this repository and open the `index.h
 
 ## Demo
 
-You can try out the game by visiting the [Pig Game Demo]([https://your-demo-url-here](https://vercel.com/ranjits-projects/pig-game/2pMH56cYzBY4a88go1rsKdtBLH1U)).
+You can try out the game by visiting the [Pig Game Demo]([https://your-demo-url-here](https://vercel.com/ranjits-projects/pig-game/2pMH56cYzBY4a88go1rsKdtBLH1U))
 
 ## Contributing
 
